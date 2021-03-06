@@ -17,7 +17,12 @@
 /storage/*
 !/storage/.keep
 
-.byebug_history
-
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore application configuration
+/config/application.yml
+
+/coverage
+/spec/fixtures/vcr_cassettes
+.DS_Store
