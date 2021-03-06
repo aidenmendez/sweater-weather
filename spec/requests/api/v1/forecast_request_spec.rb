@@ -5,7 +5,7 @@ RSpec.describe 'Forecast request' do
   describe '(happy path)' do
     it 'returns a forecast for a given location' do
       location = "austin,tx"
-      get "api/v1/forecast?location=#{location}"
+      get "/api/v1/forecast?location=#{location}"
       data = JSON.parse(response.body, symbolize_names: true)[:data]
 
       expect(data[:id]).to eq(nil)
