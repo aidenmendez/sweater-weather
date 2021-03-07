@@ -6,7 +6,7 @@ RSpec.describe 'Forecast request' do
     it 'returns a forecast for a given location', :vcr do
       location = "austin,tx"
       get "/api/v1/forecast?location=#{location}"
-      require 'pry'; binding.pry
+
       data = JSON.parse(response.body, symbolize_names: true)[:data]
       expect(data[:id]).to eq(nil)
       expect(data[:type]).to eq(:forecast)
