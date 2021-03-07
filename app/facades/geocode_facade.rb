@@ -1,8 +1,8 @@
 class GeocodeFacade
   class << self
     def get_coordinates(location)
-      data = GeocodeService.get_coordinates(location)
-      LocationCoordinates.new(data)
+      coord_data = GeocodeService.get_coordinates(location)
+      LocationCoordinates.new(coord_data)
     end
   end
 end

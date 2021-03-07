@@ -1,22 +1,25 @@
 require 'rails_helper'
 
-descibe GeocodeService do
+describe GeocodeService do
   describe "(happy path)" do
-    it "should get lattitude and longitude when given a city and state" do
-      params = {"denver,co"}
-      data = GeocodeService.get_coordinates(params)[:data]
+    it "should get lattitude and longitude when given a city and state", :vcr do
+      location = "denver,co"
+      data = GeocodeService.get_coordinates(location)
 
-      expect(data[:lattitude]).to eq("555")
-      expect(data[:lattitude]).to eq("12098")
+      expect(data[:lat]).to eq(39.738453)
+      expect(data[:lng]).to eq(-104.984853)
     end
   end
 
   describe "(sad path)" do
-    xit "should return coordinates for center of US when location isn't found" do
-
+    it "should return coordinates for center of US when location isn't found", :vcr do
+      location = nil
+      data = GeocodeService.get_coordinates(location)
+      
+      expect(data).to eq(nil)
     end
 
-    xit "errors when location parameter is missing" do
+    xit "errors when location parameter is missing", :vcr do
 
     end
   end

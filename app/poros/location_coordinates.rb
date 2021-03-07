@@ -2,7 +2,7 @@ class LocationCoordinates
   attr_reader :lattitude, :longitude
 
   def initialize(data)
-    @lattitude = data[:lattitude]
-    @longitude = data[:longitude]
+    @lattitude = data[:lat]
+    @longitude = data[:lng]
   end
 end
