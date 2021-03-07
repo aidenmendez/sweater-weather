@@ -11,7 +11,7 @@ class GeocodeService
       response = conn.get('address') do |req|
         req.params['location'] = location
       end
-
+      
       data = JSON.parse(response.body, symbolize_names: true)
 
       if data[:info][:statuscode] == 0
