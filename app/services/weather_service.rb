@@ -4,7 +4,7 @@ class WeatherService
       Faraday.new("https://api.openweathermap.org/data/2.5") do |req|
         req.params['appid'] = ENV['OPEN_WEATHER_KEY']
         req.params['units'] = 'imperial'
-        # req.params['exclude'] = 'minutely,alerts'
+        req.params['exclude'] = 'minutely,alerts'
       end
     end
   
