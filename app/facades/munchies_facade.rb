@@ -1,18 +1,17 @@
 class MunchiesFacade
   def initialize(start, destination, food)
-    direction = Direction.new(start, destination)
-
-    @destination_city = direction.dest
-    @travel_time = direction.time
-    @forecast = get_forecast(destination) # make into a poro
-    @restaurant = Restaurant.new(@travel_time, destination, food)
+    @destination_city = format_destination(destination)
+    @travel_time = DirectionFacade.get_time(start, destination)
+    @forecast = get_forecast(destination) # make into a facade
+    @restaurant = RestaurantFacade.new(@travel_time, destination, food)
   end
 
 
   private
-  # def format_destination(destination)
-  #   # format the destination or figure out where to pull it from
-  # end
+  def format_destination(destination)
+    city_format = destination.gsub(/[,]/, ', ').capitalize
+    # finish later
+  end
 
   # def get_travel_time(start, destination)
   #   # call directions services
