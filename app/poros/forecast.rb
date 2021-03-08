@@ -1,25 +1,30 @@
 class Forecast
-  attr_reader :current_weather, :daily_weather, :hourly_weather
+  attr_reader :current_weather, :daily_weather, :hourly_weather, :id
 
   def initialize(data)
+    @id = nil
     @current_weather = format_current(data[:current])
     @daily_weather = format_daily(data[:daily])
-    @hourly_weather = format_daily(data[:hourly])
-    @temperature = data[:temp]
+    @hourly_weather = format_hourly(data[:hourly])
   end
 
   private
   def format_current(data)
-    # Time.at(data[:dt])
     Current.new(data)
   end
 
   def format_daily(data)
-    require 'pry'; binding.pry
-    data.map do |day|
+    days = data.map do |day|
       Daily.new(day)
-    end.limit(5)
+    end
+
+    days[1..5]
   end
 
-
+  def format_hourly(data)
+    hours = data[1..8]
+    hours.map do |hour|
+      Hourly.new(hour)
+    end
+  end
 end

@@ -1,14 +1,11 @@
-class Current
+class Daily
   # include DateConverter
 
   attr_reader :datetime,
               :sunrise,
               :sunset,
-              :temperature,
-              :feeks_like,
-              :humidity,
-              :uvi,
-              :visibility,
+              :max_temp,
+              :min_temp,
               :conditions,
               :icon
 
@@ -16,20 +13,15 @@ class Current
     @datetime = format_datetime(data[:dt])
     @sunrise = format_datetime(data[:sunrise])
     @sunset = format_datetime(data[:sunset])
-    @temperature = data[:temp]
-    @feels_like = data[:feels_like]
-    @humidity = data[:humidity]
-    @uvi = data[:uvi]
-    @visibility = data[:visibility]
+    @max_temp = data[:temp][:max]
+    @min_temp = data[:temp][:min]
     @conditions = data[:weather][0][:description]
     @icon = data[:weather][0][:icon]
   end
-
 
   private
 
   def format_datetime(unix)
     Time.at(unix)
   end
-
 end
