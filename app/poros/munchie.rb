@@ -4,7 +4,6 @@ class Munchie
   def initialize(start, destination, food)
     time = DirectionFacade.get_time(start, destination)
     arrival_time = calc_arrival(time)
-
     @id = nil
     @destination_city = format_destination(destination)
     @travel_time = format_time(time)
