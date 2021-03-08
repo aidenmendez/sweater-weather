@@ -14,7 +14,11 @@ RSpec.describe 'Munchies request' do
       expect(data[:id]).to be_nil
       expect(data[:type]).to eq("munchie")
       expect(data[:attributes][:destination_city]).to eq("Pueblo, CO")
-      
+      expect(data[:attributes][:travel_time]).to eq("1 hours 48 min")
+      expect(data[:attributes][:forecast][:summary]).to be_a(String)
+      expect(data[:attributes][:forecast][:temperature]).to be_a(Numeric)
+      expect(data[:attributes][:restaurant][:name]).to be_a(String)
+      expect(data[:attributes][:restaurant][:address]).to be_a(String)
     end
   end
 
