@@ -12,15 +12,11 @@ describe GeocodeService do
   end
 
   describe "(sad path)" do
-    it "should return coordinates for center of US when location isn't found", :vcr do
+    it "should return nil when location isn't found", :vcr do
       location = nil
       data = GeocodeService.get_coordinates(location)
       
       expect(data).to eq(nil)
-    end
-
-    xit "errors when location parameter is missing", :vcr do
-
     end
   end
 end

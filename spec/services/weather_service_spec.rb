@@ -8,7 +8,9 @@ describe WeatherService do
 
       data = WeatherService.get_forecast(coordinates)
 
-      expect(data[:data]).to eq("")
+      expect(data).to have_key(:current)
+      expect(data).to have_key(:daily)
+      expect(data).to have_key(:hourly)
     end
   end
 end
