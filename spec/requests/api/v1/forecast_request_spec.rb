@@ -44,8 +44,11 @@ RSpec.describe 'Forecast request' do
       expect(response.status).to eq(400)
     end
 
-    xit 'returns data from somewhere in Kansas if location can\'t be found' do
-
+    it "returns an error if location can't be found" do
+      location = "adfavcagdgawegfbfharewagrrg"
+      get "/api/v1/forecast?location=#{location}"
+      
+      expect(response.status).to eq(400)
     end
   end
 end
