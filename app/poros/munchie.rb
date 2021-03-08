@@ -1,4 +1,6 @@
 class Munchie
+  attr_reader :id, :destination_city, :travel_time, :forecast, :restaurant
+
   def initialize(start, destination, food)
     time = DirectionFacade.get_time(start, destination)
     arrival_time = calc_arrival(time)
