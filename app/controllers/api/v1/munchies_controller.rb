@@ -6,5 +6,7 @@ class Api::V1::MunchiesController < ApplicationController
       # Returns a restaurant that'll be open serving specified cuisine
     # Pass destination parameter to Forecast API
 
+    munchies = MunchiesFacade.new(params[:start], params[:destination], params[:food])
+    # serialize munchies
   end
 end
