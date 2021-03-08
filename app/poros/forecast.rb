@@ -3,14 +3,14 @@ class Forecast
 
   def initialize(data)
     @id = nil
-    @current_weather = format_current(data[:current])
+    @current_weather = format_currently(data[:current])
     @daily_weather = format_daily(data[:daily])
     @hourly_weather = format_hourly(data[:hourly])
   end
 
   private
-  def format_current(data)
-    Current.new(data)
+  def format_currently(data)
+    Currently.new(data)
   end
 
   def format_daily(data)

@@ -1,5 +1,7 @@
-class Current
-  # include DateConverter
+require "./lib/modules/timestampable"
+
+class Currently
+  include Timestampable
 
   attr_reader :datetime,
               :sunrise,
@@ -24,12 +26,4 @@ class Current
     @conditions = data[:weather][0][:description]
     @icon = data[:weather][0][:icon]
   end
-
-
-  private
-
-  def format_datetime(unix)
-    Time.at(unix)
-  end
-
 end
