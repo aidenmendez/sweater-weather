@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Munchies request' do
   describe '(happy path)' do
-    it "returns all required information" do
+    it "returns all required information", :vcr do
       start = 'denver,co'
       destination = 'pueblo,co'
       food = 'hamburger'
