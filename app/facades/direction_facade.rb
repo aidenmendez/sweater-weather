@@ -13,9 +13,10 @@ class DirectionFacade
       end
       
       data = JSON.parse(response.body, symbolize_names: true)
-    
+
       if data[:info][:statuscode] == 0
-        data[:route][:formattedTime]
+        # returns travel time in seconds (utc)
+        data[:route][:time]
       end      
     end
   end
