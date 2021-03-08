@@ -1,4 +1,5 @@
 class DirectionFacade
+  # TO DO move to service
   class << self
     def conn
       Faraday.new("http://mapquestapi.com/directions/v2") do |req|
@@ -15,7 +16,6 @@ class DirectionFacade
       data = JSON.parse(response.body, symbolize_names: true)
 
       if data[:info][:statuscode] == 0
-        # returns travel time in seconds (utc)
         data[:route][:time]
       end      
     end

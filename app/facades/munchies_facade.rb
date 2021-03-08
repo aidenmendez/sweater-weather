@@ -5,13 +5,15 @@ class MunchiesFacade
     time = DirectionFacade.get_time(start, destination)
     @travel_time = format_time(time)
 
-    require 'pry'; binding.pry
-    @forecast = get_forecast(destination) # make into a facade
-    @restaurant = RestaurantFacade.new(time, destination, food)
+    @forecast = get_forecast(destination) # TO DO make into a facade
+    
+    arrival_time = calc_arrival(time)
+    @restaurant = RestaurantFacade.new(arrival_time, destination, food)
   end
 
 
   private
+
   def format_destination(destination)
     city_format = destination.gsub(/[,]/, ', ').capitalize
     # finish later
@@ -36,5 +38,11 @@ class MunchiesFacade
     hours = Time.at(seconds).utc.strftime "%H"
     minutes = Time.at(seconds).utc.strftime "%M"
     "#{hours} hours #{minutes} minutes"
+  end
+
+  def calc_arrival(time)
+    require 'pry'; binding.pry
+    open_at = Time.now.utc + time
+    open_at.to_time.to_i
   end
 end
