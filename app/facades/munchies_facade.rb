@@ -8,7 +8,7 @@ class MunchiesFacade
     @forecast = get_forecast(destination) # TO DO make into a facade
     
     arrival_time = calc_arrival(time)
-    @restaurant = RestaurantFacade.new(arrival_time, destination, food)
+    @restaurant = RestaurantFacade.get_restaurant(arrival_time, destination, food)
   end
 
 
@@ -41,7 +41,6 @@ class MunchiesFacade
   end
 
   def calc_arrival(time)
-    require 'pry'; binding.pry
     open_at = Time.now.utc + time
     open_at.to_time.to_i
   end
