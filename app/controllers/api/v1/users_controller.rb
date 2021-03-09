@@ -9,19 +9,10 @@ class Api::V1::UsersController < ApplicationController
                       }
   
       user = User.create!(user_params)
-      # render json: UserSerializer.new(user)
-      ser =  UserSerializer.new(user)
-      require 'pry'; binding.pry
+      render json: UserSerializer.new(user), status: 201
     rescue
       require 'pry'; binding.pry
     end
-
-    # if 
-    #   
-    # else
-    #   # render an error
-    #   require 'pry'; binding.pry
-    # end
   end
 
   private

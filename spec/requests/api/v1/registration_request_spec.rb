@@ -16,7 +16,7 @@ describe "Registration request" do
 
       expect(response.status).to eq(201)
       expect(data[:type]).to eq("user")
-      expect(data[:id]).to be_nil
+      expect(data[:id]).to be_an(String)
       expect(data[:attributes][:email]).to be_a(String)
       expect(data[:attributes][:api_key]).to be_a(String)  
     end
