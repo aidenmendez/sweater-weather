@@ -20,9 +20,15 @@ describe "Session request" do
 
       expect(response.status).to eq(200)
       expect(data[:type]).to eq("user")
-      expect(data[:id]).to be_an(user.id)
+      expect(data[:id]).to eq(user.id.to_s)
       expect(data[:attributes][:email]).to eq(user.email)
       expect(data[:attributes][:api_key]).to eq(user.api_key)  
+    end
+  end
+
+  describe "(sad path)" do
+    it "" do
+
     end
   end
 end
