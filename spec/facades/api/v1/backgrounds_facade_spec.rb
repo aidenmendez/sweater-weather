@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Backgrounds Facade" do
   describe "(happy path)" do
-    it "returns an image object with a nested credit object" do
+    it "returns an image object with a nested credit object", :vcr do
       location = "denver,co"
 
       # should just return raw data, facade turns into poro
