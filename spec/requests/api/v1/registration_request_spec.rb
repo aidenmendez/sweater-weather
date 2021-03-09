@@ -9,8 +9,8 @@ describe "Registration request" do
         "password_confirmation": "password"
       }
   
-      post registration_path(req_data.to_json)
-      # post "/api/v1/users", req_data.to_json
+      # post api_v1_registration_index_path(req_data.to_json)
+      post "/api/v1/users", :params => req_data
 
       data = JSON.parse(response.body, symbolize_names: true)[:data]
 
