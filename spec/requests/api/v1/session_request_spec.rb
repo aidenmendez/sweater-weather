@@ -27,8 +27,44 @@ describe "Session request" do
   end
 
   describe "(sad path)" do
-    it "" do
+    it "returns an error message that credentials are incorrect if password is wrong" do
+      user = User.create!({
+        :email => "whatever@example.com",
+        :password => "password",
+        :password_confirmation => "password"
+        })
 
+      req_data = {
+        "email": "whatever@example.com",
+        "password": "solarwinds123",
+      }
+  
+      post "/api/v1/sessions", :params => req_data
+
+      error_message = JSON.parse(response.body, symbolize_names: true)[:error][:message]
+
+      expect(response.status).to eq(400)
+      expect(error_message).to eq("Incorrect credentials") 
+    end
+
+    it "returns an error message that credentials are incorrect if email doesn't exist" do
+      user = User.create!({
+        :email => "whatever@example.com",
+        :password => "password",
+        :password_confirmation => "password"
+        })
+
+      req_data = {
+        "email": "new_email@example.com",
+        "password": "password",
+      }
+  
+      post "/api/v1/sessions", :params => req_data
+
+      error_message = JSON.parse(response.body, symbolize_names: true)[:error][:message]
+
+      expect(response.status).to eq(400)
+      expect(error_message).to eq("Incorrect credentials") 
     end
   end
 end
