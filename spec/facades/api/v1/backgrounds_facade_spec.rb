@@ -13,7 +13,6 @@ describe "Backgrounds Facade" do
 
       expect(image.credit.source).to be_a(String)
       expect(image.credit.author).to be_a(String)
-      expect(image.credit.logo).to be_a(String)
     end
   end
 end
