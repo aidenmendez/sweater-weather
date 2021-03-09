@@ -9,7 +9,6 @@ describe "Registration request" do
         "password_confirmation": "password"
       }
   
-      # post api_v1_registration_index_path(req_data.to_json)
       post "/api/v1/users", :params => req_data
 
       data = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -24,19 +23,67 @@ describe "Registration request" do
 
   describe "(sad path)" do
     it "returns a 400 response when passwords don't match" do
+      req_data = {
+        "email": "whatever@example.com",
+        "password": "password",
+        "password_confirmation": "Password"
+      }
+  
+      post "/api/v1/users", :params => req_data
 
+      error_message = JSON.parse(response.body, symbolize_names: true)[:error][:message]
+
+      expect(response.status).to eq(400)
+      expect(error_message).to eq("Passwords don't match")
     end
 
     it "returns a 400 response when email is already taken" do
-      
+      User.create!({
+        :email => "whatever@example.com",
+        :password => "password",
+        :password_confirmation => "password"
+        })
+
+      req_data = {
+        "email": "whatever@example.com",
+        "password": "password3",
+        "password_confirmation": "password3"
+      }
+  
+      post "/api/v1/users", :params => req_data
+
+      error_message = JSON.parse(response.body, symbolize_names: true)[:error][:message]
+
+      expect(response.status).to eq(400)
+      expect(error_message).to eq("Email already taken")
     end
 
     it "returns a 400 response when a password field is missing" do
-      
-    end
+      req_data = {
+        "email": "whatever@example.com",
+        "password": "password3"
+      }
+  
+      post "/api/v1/users", :params => req_data
+  
+      error_message = JSON.parse(response.body, symbolize_names: true)[:error][:message]
 
+      expect(response.status).to eq(400)
+      expect(error_message).to eq("Passwords don't match")
+    end
+    
     it "returns a 400 response when the email is missing" do
-      
+      req_data = {
+        "password": "password3",
+        "password_confirmation": "password3"
+      }
+  
+      post "/api/v1/users", :params => req_data
+
+      error_message = JSON.parse(response.body, symbolize_names: true)[:error][:message]
+  
+      expect(response.status).to eq(400)
+      expect(error_message).to eq("Something went wrong")
     end
   end
 end
