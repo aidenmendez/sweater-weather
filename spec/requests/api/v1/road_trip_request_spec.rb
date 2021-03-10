@@ -4,10 +4,10 @@ describe "Road trip request" do
   describe "(happy path)" do
     it "should return a json with travel and weather data" do
       user = User.create!({
-        :email => "whatever@example.com",
-        :password => "password",
-        :password_confirmation => "password"
-        })
+        :email                  => "whatever@example.com",
+        :password               => "password",
+        :password_confirmation  => "password"
+      })
       
       req_data = {
         "origin": "Denver,CO",
