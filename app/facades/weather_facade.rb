@@ -19,9 +19,9 @@ class WeatherFacade
         day_forecast = find_daily(arrival_time, forecast_data[:daily])
         temperature = day_forecast[:temp][:day]
         conditions = day_forecast[:weather][0][:description]
-        forecast = ShortForecast.new(temperature, conditions)
+        ShortForecast.new(temperature, conditions)
       else
-        "No forecast available for more than 8 days from now."
+        "No forecasts available for more than 8 days from now."
       end
     end
 
