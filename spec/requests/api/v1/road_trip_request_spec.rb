@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Road trip request" do
   describe "(happy path)" do
-    it "should return a json with travel and weather data" do
+    it "should return a json with travel and weather data", :vcr do
       user = User.create!({
         :email                  => "whatever@example.com",
         :password               => "password",
