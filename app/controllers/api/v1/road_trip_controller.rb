@@ -1,6 +1,8 @@
 class Api::V1::RoadTripController < ApplicationController
   def create
     # mapquest direction endpoint(pass start, end) => returns travel time (seconds), start city (formatted), end city (formatted)
+    direction_stats = RoadTripFacade.get_directions(params[:origin], params[:destination])
+    
     # call weather_at_eta facade (pass end city and travel time)
         # call weather service for hourly forecasts
         # calculate arrival time
