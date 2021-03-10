@@ -7,7 +7,7 @@ describe 'Directions Service' do
       destination = 'pueblo,co'
 
       data = DirectionsService.get_data(origin, destination)
-      
+
       expect(data[:route][:realTime]).to be_an(Integer)
       expect(data[:route][:locations][0][:adminArea5]).to eq("Denver")
       expect(data[:route][:locations][0][:adminArea3]).to eq("CO")
