@@ -15,8 +15,12 @@ class RoadTrip
 
   private
   def format_time(seconds)
-    hours = Time.at(seconds).utc.strftime "%H"
-    minutes = Time.at(seconds).utc.strftime "%M"
-    "#{hours} hours, #{minutes} minutes"
+    if seconds == "impossible"
+      "impossible"
+    else
+      hours = Time.at(seconds).utc.strftime "%H"
+      minutes = Time.at(seconds).utc.strftime "%M"
+      "#{hours} hours, #{minutes} minutes"
+    end
   end
 end
