@@ -9,6 +9,7 @@ describe 'Road Trip poro' do
 
     road_trip = RoadTrip.new(start_city, end_city, travel_time, weather_at_eta)
 
+    expect(road_trip.id).to be_nil
     expect(road_trip.start_city).to eq(start_city)
     expect(road_trip.end_city).to eq(end_city)
     expect(road_trip.travel_time).to eq("01 hours, 52 minutes")
