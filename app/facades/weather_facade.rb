@@ -11,17 +11,18 @@ class WeatherFacade
       arrival_time = calc_arrival(offset_time)
       
       if offset_time <= 172800 #less than 2 days
-        # offset current
-        find_hourly(arrival_time, forecast_data[:hourly])
+        hour_forecast = find_hourly(arrival_time, forecast_data[:hourly])
+        temperature = hour_forecast[:temp]
+        conditions = hour_forecast[:weather][0][:description]
+        ShortForecast.new(temperature, conditions)
       elsif offset_time > 172800 && offset_time <=691200 # between 48 hours and 8 days
-        find_daily(arrival_time, forecast_data[:daily])
+        day_forecast = find_daily(arrival_time, forecast_data[:daily])
+        temperature = day_forecast[:temp][:day]
+        conditions = day_forecast[:weather][0][:description]
+        forecast = ShortForecast.new(temperature, conditions)
       else
-        # Weather data isn't available
+        "No forecast available for more than 8 days from now."
       end
-
-      # calculate arrival time
-      # select hourly forecast for arrival time
-      # return Destination Forecast poro instance
     end
 
     private
@@ -32,12 +33,11 @@ class WeatherFacade
     end
 
     def find_hourly(time, data)
-      data[:hourly].find { |segment| Time.at(segment[:dt]).hour == Time.at(time).hour }
+      data.find { |hour_data| Time.at(hour_data[:dt]).hour == Time.at(time).hour }
     end
     
     def find_daily(time, data)
-      require 'pry'; binding.pry
-      data[:hourly].map { |hour| Time.at(hour[:dt]).day }
+      data.find { |full_day| Time.at(full_day[:dt]).day == Time.at(time).day}
     end
   end
 end
