@@ -12,13 +12,7 @@ class DirectionsService
         req.params['to'] = destination
       end
       
-      JSON.parse(response.body, symbolize_names: true)
-  
-      # if data[:info][:statuscode] == 0
-      #   data
-      # else
-      #   {  }
-      # end      
+      JSON.parse(response.body, symbolize_names: true)   
     end
   end
 end
