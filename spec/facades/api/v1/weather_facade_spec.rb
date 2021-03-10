@@ -24,7 +24,7 @@ describe "Weather Facade" do
       expect(short_forecast.conditions).to be_a(String)
     end
 
-    it "gets a shortened forecast for a destination's coordinates (t > 48 hours away && t < 691200)", :vcr do
+    it "gets a shortened forecast for a destination's coordinates (t > 48 hours away && t < 8 days)", :vcr do
       coords = GeocodeFacade.get_coordinates("new york,ny")
       offset_time = 300500
 
@@ -34,13 +34,13 @@ describe "Weather Facade" do
       expect(short_forecast.conditions).to be_a(String)
     end
 
-    it "gets error message when travel time is more than 8 days (t > 691200)", :vcr do
+    it "gets error message when travel time is more than 8 days (t > 8 days)", :vcr do
       coords = GeocodeFacade.get_coordinates("new york,ny")
       offset_time = 691201
 
       short_forecast = WeatherFacade.get_short_forecast(coords, offset_time)
 
-      expect(short_forecast).to eq("No forecast available for more than 8 days from now.")
+      expect(short_forecast).to eq("No forecasts available for more than 8 days from now.")
     end
   end
 end
