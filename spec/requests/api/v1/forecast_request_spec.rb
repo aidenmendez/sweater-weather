@@ -31,7 +31,7 @@ RSpec.describe 'Forecast request' do
       expect(data["attributes"]["daily_weather"][0]["icon"]).to be_a(String)
 
       expect(data["attributes"]["hourly_weather"][0]["datetime"]).to be_a(String)
-      expect(data["attributes"]["hourly_weather"][0]["temperature"]).to be_a(Float)
+      expect(data["attributes"]["hourly_weather"][0]["temperature"]).to be_a(Numeric)
       expect(data["attributes"]["hourly_weather"][0]["conditions"]).to be_a(String)
       expect(data["attributes"]["hourly_weather"][0]["icon"]).to be_a(String)
     end
