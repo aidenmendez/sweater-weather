@@ -11,7 +11,7 @@ describe "Session request" do
 
       req_data = {
         "email": "whatever@example.com",
-        "password": "password",
+        "password": "password"
       }
   
       post "/api/v1/sessions", :params => req_data
@@ -36,7 +36,7 @@ describe "Session request" do
 
       req_data = {
         "email": "whatever@example.com",
-        "password": "solarwinds123",
+        "password": "solarwinds123"
       }
   
       post "/api/v1/sessions", :params => req_data
@@ -56,7 +56,7 @@ describe "Session request" do
 
       req_data = {
         "email": "new_email@example.com",
-        "password": "password",
+        "password": "password"
       }
   
       post "/api/v1/sessions", :params => req_data

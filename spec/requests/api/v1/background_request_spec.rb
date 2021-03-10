@@ -17,4 +17,24 @@ describe 'Background image request' do
       expect(data[:attributes][:credit][:source]).to eq("www.unsplash.com")      
     end
   end
+
+  describe "(sad path)" do
+    it "should return an error if nil location is passed", :vcr do
+      location = nil
+      get "/api/v1/backgrounds?location=#{location}"
+
+      data = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response.status).to eq(400)
+    end
+
+    it "should return an error if no location is passed", :vcr do
+      location = nil
+      get "/api/v1/backgrounds"
+
+      data = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response.status).to eq(400)
+    end
+  end
 end
