@@ -315,5 +315,5 @@ Aiden Mendez — [LinkedIn](https://linkedin.com/in/aidenmendez)
 <!-- MARKDOWN LINKS & IMAGES -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/aiden-mendez
-[circleci-shield]: https://circleci.com/gh/aidenmendez/rails-engine.svg?style=svg
-[circleci-url]: https://app.circleci.com/pipelines/github/aidenmendez/rails-engine
+[circleci-shield]: https://circleci.com/gh/aidenmendez/sweater-weather.svg?style=svg
+[circleci-url]: https://app.circleci.com/pipelines/github/aidenmendez/sweater-weather
